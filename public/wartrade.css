@@ -1,0 +1,14 @@
+#left-column {
+    float: left;
+    width: 30%;
+}
+#right-column {
+    float: right;
+    width: 30%;
+}
+#center-column {
+    margin: 0;
+}
+#footer {
+    clear: both;
+}
