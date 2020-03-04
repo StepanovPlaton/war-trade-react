@@ -16,24 +16,43 @@ const clearCheckedType = () => {
     document.getElementById("sale").className = "buttons_trade";
     document.getElementById("buy").className = "buttons_trade";
 }
+const clearCheckedQuantity = () => {
+    document.getElementById("quantity_1").className = "buttons_trade buttons_quantity";
+    document.getElementById("quantity_5").className = "buttons_trade buttons_quantity";
+    document.getElementById("quantity_10").className = "buttons_trade buttons_quantity";
+    document.getElementById("input_quantity").className = "buttons_trade buttons_quantity";
+}
 
 const getResource = () => {
     if(document.getElementById("trade_gold").className.search("checked") != -1) { return "Gold"; }
     else if(document.getElementById("trade_wood").className.search("checked") != -1) { return "Wood"; }
     else { return "Rock"; }
 }
-
 const getType = () => {
     if(document.getElementById("buy").className.search("checked") != -1) { return "Buy"; }
     else if(document.getElementById("sale").className.search("checked") != -1) { return "Sale"; }
+}
+const getQuantity = () => {
+    if(document.getElementById("quantity_1").className.search("checked") != -1) { return "1"; }
+    else if(document.getElementById("quantity_5").className.search("checked") != -1) { return "5"; }
+    else if(document.getElementById("quantity_10").className.search("checked") != -1) { return "5"; }
+    else { return document.getElementById("input_quantity").textContent; }
 }
 
 const clickGold = () => { clearCheckedResource(); document.getElementById("trade_gold").className += " checked"; }
 const clickWood = () => { clearCheckedResource(); document.getElementById("trade_wood").className += " checked"; }
 const clickRock = () => { clearCheckedResource(); document.getElementById("trade_rock").className += " checked"; }
-
 const clickSale = () => { clearCheckedType(); document.getElementById("sale").className += " checked"; }
 const clickBuy = () => { clearCheckedType(); document.getElementById("buy").className += " checked"; }
+const click1 = () => { clearCheckedQuantity(); document.getElementById("quantity_1").className += " checked"; }
+const click5 = () => { clearCheckedQuantity(); document.getElementById("quantity_5").className += " checked"; }
+const click10 = () => { clearCheckedQuantity(); document.getElementById("quantity_10").className += " checked"; }
+const clickplus = () => { clearCheckedQuantity(); var input = document.getElementById("input_quantity"); input.className += " checked"; 
+                        ReactDOM.render(<span>{parseInt(input.textContent)+1}</span>, input);  }
+const clickminus = () => { clearCheckedQuantity(); var input = document.getElementById("input_quantity"); input.className += " checked"; 
+                        if(parseInt(input.textContent)>1) {ReactDOM.render(<span>{parseInt(input.textContent)-1}</span>, input); } }
+const clickinput = () => { clearCheckedQuantity(); document.getElementById("input_quantity").className += " checked"; }
+
 
 const typeTransaction = (type) => {if(type==0) {return "status";} else {return "trade";}}
 
@@ -43,10 +62,10 @@ function TradeAndGetStatus(type=0) {
 
     request.onload = () => {
         const data = JSON.parse(request.responseText);
-        document.querySelector('#my_money').innerHTML = data.Money;
-        document.querySelector('#my_gold').innerHTML = data.Gold;
-        document.querySelector('#my_wood').innerHTML = data.Wood;
-        document.querySelector('#my_rock').innerHTML = data.Rock;
+        ReactDOM.render(data.Money, document.querySelector('#my_money'));
+        ReactDOM.render(data.Gold, document.querySelector('#my_gold'));
+        ReactDOM.render(data.Wood, document.querySelector('#my_wood'));
+        ReactDOM.render(data.Rock, document.querySelector('#my_rock'));
     }
 
     const data = new FormData();
@@ -55,7 +74,7 @@ function TradeAndGetStatus(type=0) {
     data.append('type', typeTransaction(type));
     data.append('typeResource', getResource());
     data.append('typeTransaction', getType());
-    data.append('Quantity', "1");
+    data.append('Quantity', getQuantity());
     request.send(data);
     return false;
 }
@@ -65,6 +84,7 @@ export default class Trade extends Component {
     Trade() { TradeAndGetStatus(1); }
 
     render() {
+        window.setTimeout(TradeAndGetStatus, 500);
         window.setInterval(TradeAndGetStatus, 5000);
         return (
             <div id="trade">
@@ -79,17 +99,28 @@ export default class Trade extends Component {
                     </tr>
                     <tr>
                         <th>Тип сделки:</th>
-                        <td><button className="buttons_trade checked" id="buy" onClick={clickBuy}>Покупка</button></td>
-                        <td><button className="buttons_trade" id="sale" onClick={clickSale}>Продажа</button></td>
+                        <td><button className="buttons_trade checked" id="buy" onClick={clickBuy}><i class="fa fa-arrow-down fa-lg"/>Покупка</button></td>
+                        <td><button className="buttons_trade" id="sale" onClick={clickSale}><i class="fa fa-arrow-up fa-lg"/>Продажа</button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <th>Предмет сделки:</th>
-                        <td><button className="buttons_trade checked" id="trade_gold" onClick={clickGold}>Золото</button></td>
-                        <td><button className="buttons_trade" id="trade_wood" onClick={clickWood}>Деверо</button></td>
-                        <td><button className="buttons_trade" id="trade_rock" onClick={clickRock}>Камень</button></td>
+                        <td><button className="buttons_trade checked" id="trade_gold" onClick={clickGold}><i className="fa fa-cubes fa-lg"/>Золото</button></td>
+                        <td><button className="buttons_trade" id="trade_wood" onClick={clickWood}><i className="fa fa-bars fa-lg"/>Дерево</button></td>
+                        <td><button className="buttons_trade" id="trade_rock" onClick={clickRock}><i className="fa fa-area-chart fa-lg" />Камень</button></td>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <th>Количество:</th>
+                        <td><button className="buttons_trade buttons_quantity checked" id="quantity_1" onClick={click1}> 1 </button></td>
+                        <td><button className="buttons_trade buttons_quantity" id="quantity_5" onClick={click5}> 5 </button></td>
+                        <td><button className="buttons_trade buttons_quantity" id="quantity_10" onClick={click10}> 10 </button></td>
+                        <td id="trade_text_input"> <span>
+                            <button className="buttons_trade buttons_input_quantity" onClick={clickminus}>-</button>
+                            <button className="buttons_trade buttons_input_quantity" id="input_quantity" onClick={clickinput}><span>10 </span></button>
+                            <button className="buttons_trade buttons_input_quantity" onClick={clickplus}>+</button>
+                        </span> </td>
                     </tr>
                     <tr><th colspan="5" id="trade_th"><button className="buttons_issue checked" onClick={this.Trade}>Оформить сделку</button></th></tr>
                 </table>

@@ -1,8 +1,13 @@
 #datetime {
-    width: 85%;
+    width: 70%;
     height: 5%;
-    padding: 8px;
+    padding: 8px 10px;
     border: 3px solid rgb(85, 85, 255);
     border-radius: 10px;
     margin-left: 5px;
+}
+
+.datetime_class {
+    float: right;
+    margin: 0;
 }

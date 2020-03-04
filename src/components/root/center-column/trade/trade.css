@@ -1,5 +1,5 @@
 #trade {
-    margin: 55% auto 0 auto;
+    margin-top: 60%;
 }
 #trade_th {
     text-align: center;
@@ -8,7 +8,7 @@
     text-decoration: none;
     outline: none;
     display: inline-block;
-    padding: 5px 10px;
+    padding: 0px 10px;
     border-radius: 10px;
     box-shadow: 0 0 40px 40px rgb(255, 82, 29) inset, 0 0 0 0 rgb(255, 82, 29);
     font-family: 'Montserrat', sans-serif;
@@ -16,12 +16,24 @@
     letter-spacing: 2px;
     color: white;
     transition: .15s ease-in-out;
-  }
+}
   .buttons_trade:hover, .buttons_issue:hover{
-    box-shadow: 0 0 10px 0 rgb(255, 82, 29) inset, 0 0 10px 4px rgb(255, 82, 29);
+    box-shadow: 0 0 10px 0 rgb(255, 82, 29) inset, 0 0 5px 2px rgb(255, 82, 29);
     color: rgb(255, 82, 29);
+    
   }
 
 .checked {
-    box-shadow: 0 0 40px 40px rgb(113, 212, 0) inset, 0 0 0 0 rgb(113, 212, 0);
+    box-shadow: 0 0 40px 40px rgb(96, 179, 0) inset, 0 0 0 0 rgb(96, 179, 0);
+}
+.buttons_quantity {
+  width: 60%;
+}
+
+#input_quantity {
+  
+  width: 40%;
+}
+.buttons_input_quantity {
+  width: 30%;
 }

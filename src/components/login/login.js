@@ -9,6 +9,8 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
+document.addEventListener("keydown", e => { if(e.keyCode == 13){ document.getElementById("send").click(); } });
+
 export default class LoginForms extends Component {
 
     clickOnSendButton() {
@@ -17,7 +19,10 @@ export default class LoginForms extends Component {
 
         request.onload = () => {
             const data = JSON.parse(request.responseText);
-            if(`${data.answer}`.search("LOGINOK") == -1) { document.querySelector('#tr_ERROR').innerHTML = `<div id="div_ERROR"><p id="ERROR">${data.answer}</p></div>`; }
+            if(`${data.answer}`.search("LOGINOK") == -1) { 
+                ReactDOM.render(<div id="div_ERROR"><p id="ERROR">{data.answer}</p></div>, 
+                                document.querySelector('#tr_ERROR'));
+            }
             else { ReactDOM.render(<Root />, document.getElementById("root"));  }  
         }
 
@@ -50,13 +55,11 @@ export default class LoginForms extends Component {
         //this.chekLogined();
         return (
             <div id="login_div">
-            <table id='login-form'>
-                <tr align="center"><h4>Форма регистрации</h4></tr>
-                <tr align="center"><p><input type="text" id="login" size="30" maxlength="15" placeholder="Логин"></input></p></tr>
-                <tr align="center"><p><input type="password" id="password" size="30" maxlength="15" placeholder="Пароль"></input></p></tr>
-                <tr align="center"><button id="send" onClick={ this.clickOnSendButton.bind(this) }>Отправить</button></tr>
-                <tr id="tr_ERROR"></tr>
-            </table>
+                <h4 class="center"><p>Форма регистрации</p></h4>
+                <p><input type="text" id="login" size="30" maxlength="15" placeholder="Логин" class="center"></input></p>
+                <p><input type="password" id="password" size="30" maxlength="15" placeholder="Пароль" class="center"></input></p>
+                <button id="send" onClick={ this.clickOnSendButton.bind(this) } class="center">Отправить</button>
+                <div id="tr_ERROR"></div>
             </div>
         );
     };

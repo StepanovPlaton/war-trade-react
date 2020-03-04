@@ -11,9 +11,9 @@ const getValueResource = () => {
 
     request.onload = () => {
         const data = JSON.parse(request.responseText);
-        document.querySelector('#money_js').innerHTML = `<span> Золото - ${data.money} </span>`;
-        document.querySelector('#wood_js').innerHTML = `<span> Дерево - ${data.wood} </span>`;
-        document.querySelector('#rock_js').innerHTML = `<span> Камень - ${data.rock} </span>`;
+        ReactDOM.render(<span> Золото - {data.money} </span>, document.querySelector('#money_js'));
+        ReactDOM.render(<span> Дерево - {data.wood} </span>, document.querySelector('#wood_js'));
+        ReactDOM.render(<span> Камень - {data.rock} </span>, document.querySelector('#rock_js'));
     }
 
     const data = new FormData();
@@ -28,9 +28,9 @@ export default class Head extends Component {
         window.setInterval(getValueResource, 2000);
         return (
             <div id="resource">
-                <span id="price_money"><i className="fa fa-cubes"></i><span id="money_js"></span></span>
-                <span id="price_wood"><i className="fa fa-bars"></i><span id="wood_js"></span></span>
-                <span id="price_rock"><i className="fa fa-area-chart"></i><span id="rock_js"></span></span>
+                <span id="price_money"><i className="fa fa-cubes fa-lg"></i><span id="money_js"></span></span>
+                <span id="price_wood"><i className="fa fa-bars fa-lg"></i><span id="wood_js"></span></span>
+                <span id="price_rock"><i className="fa fa-area-chart fa-lg"></i><span id="rock_js"></span></span>
             </div>
         );
     };

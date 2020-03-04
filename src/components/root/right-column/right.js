@@ -13,9 +13,10 @@ const getGraph = () => {
 
     request.onload = () => {
         const data = request.responseText;
-        console.log(data);
         //const data = JSON.parse(request.responseText);
         const x = Math.random();
+        //Right.SetState({data});
+        //Right.SetState({img_src: {data}});
         document.querySelector('#graph').src = `${data}`;
         //document.getElementById('graph_div').value = `${x}`;
     }
@@ -28,13 +29,20 @@ const getGraph = () => {
 
 export default class Right extends Component {
 
+    state = { img_src: "http://192.168.32.10:5001/static/graphs/1.png?name=1" };
+
+    static SetState(src) {
+        this.SetState({img_src: src});
+    }
+
     render() {
         getGraph();
-        window.setInterval(getGraph, 12000);
+        window.setInterval(getGraph, 12000)
+
         return (
                 <div className="graph">
                 <div id="graph_div">
-                    <img src="http://192.168.32.10:5001/static/graphs/1.png?name=1" width="115%" id="graph" className="graph"/>
+                    <img src="${this.state.img_src}" width="115%" id="graph" className="graph"/>
                 </div>
                 <p><LogElement type="message" text="Пример текста 1"/></p>
                 <p><LogElement type="game" text="Пример текста 2"/></p>

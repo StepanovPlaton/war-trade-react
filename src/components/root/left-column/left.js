@@ -13,7 +13,7 @@ const getGameTime = () => {
 
     request.onload = () => {
         const data = JSON.parse(request.responseText);
-        document.querySelector('#datetime_js').innerHTML = `<span> ${data.gametime} </span>`;
+        ReactDOM.render((<span> {data.gametime} </span>), document.querySelector('#datetime_js'));
     }
 
     const data = new FormData();
@@ -23,13 +23,15 @@ const getGameTime = () => {
 }
 
 export default class Left extends Component {
-
     render() {
         getGameTime();
         window.setInterval(getGameTime, 5000);
         return (
             <div>
-                <h6 id="datetime"><i className="fa fa-calendar-check-o"></i> <span id="datetime_js"></span> </h6>
+                <p id="datetime">
+                    <i className="fa fa-calendar-check-o fa-lg"/>
+                    <span id="datetime_js"></span>
+                </p>
                 <TableOnline />
             </div>
         );
