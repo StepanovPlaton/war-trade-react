@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-//import './right.css'
-import { render } from '@testing-library/react';
-import Cookies from 'universal-cookie';
-
 const getIcon = (typeMessege) => {
     if(typeMessege == "info") { return "fa fa-info"; }
     if(typeMessege == "message") { return "fa fa-user"; }
@@ -14,10 +10,10 @@ const getIcon = (typeMessege) => {
 
 const LogElement = (input) => {
     return (
-        <span>
+        <p>
             <i className={ getIcon(input.type) }></i>      
             >   { input.text }
-        </span>
+        </p>
     );
 }
 

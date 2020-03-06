@@ -16,10 +16,10 @@ const getTableOnline = () => {
         render.push((
         <tr> 
             <th className="status-table-title">User</th> 
-            <th className="status-table-title"><i className="fa fa-money fa-lg" />/<i className="fa fa-cubes fa-lg" />/<i className="fa fa-bars fa-lg" />/<i className="fa fa-area-chart fa-lg"/></th> 
+            <th className="status-table-title"><i className="fa fa-money fa-lg" /> & <i className="fa fa-cubes fa-lg" /> & <i className="fa fa-bars fa-lg" /> & <i className="fa fa-area-chart fa-lg"/></th> 
         </tr> ));
         for (var i = 0; i < data.length; i++) { 
-            render.push(<UserStatusBar name={data[i][0]} money={data[i][1]} gold={data[i][2]} wood={data[i][3]} rock={data[i][4]} />); 
+            render.push(<UserStatusBar add={"player"+(i+1)} name={data[i][0]} money={data[i][1]} gold={data[i][2]} wood={data[i][3]} rock={data[i][4]} />); 
         }
         ReactDOM.render(React.createElement('tbody', null, render), document.querySelector('#UserStatusBar_div'));
     }
@@ -32,9 +32,9 @@ const getTableOnline = () => {
 
 const UserStatusBar = (input) => {
     return (
-        <tr>
+        <tr className={input.add}>
             <td className="status-table-title">{ input.name }</td>
-            <td className="status-table-td">{ input.money}/{input.gold}/{input.wood}/{input.rock}</td>
+            <td className="status-table-td">{input.money + input.gold*parseInt(document.getElementById('money_js').textContent.split("").reverse().join("")) + input.wood*parseInt(document.getElementById('wood_js').textContent.split("").reverse().join("")) + input.rock*parseInt(document.getElementById('rock_js').textContent.split("").reverse().join(""))}</td>
         </tr>
     );
 }

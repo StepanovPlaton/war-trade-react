@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import './right.css'
-import { render } from '@testing-library/react';
-import Cookies from 'universal-cookie';
 
-import LogElement from './log-element/log-element'
+import Log from './log/log';
 
 const getGraph = () => {
     const request = new XMLHttpRequest();
@@ -15,10 +13,7 @@ const getGraph = () => {
         const data = request.responseText;
         //const data = JSON.parse(request.responseText);
         const x = Math.random();
-        //Right.SetState({data});
-        //Right.SetState({img_src: {data}});
         document.querySelector('#graph').src = `${data}`;
-        //document.getElementById('graph_div').value = `${x}`;
     }
 
     const data = new FormData();
@@ -44,10 +39,9 @@ export default class Right extends Component {
                 <div id="graph_div">
                     <img src="${this.state.img_src}" width="115%" id="graph" className="graph"/>
                 </div>
-                <p><LogElement type="message" text="Пример текста 1"/></p>
-                <p><LogElement type="game" text="Пример текста 2"/></p>
-                <p><LogElement type="system" text="Пример текста 3"/></p>
-                <p><LogElement type="info" text="Пример текста 4"/></p>
+                <div id="Log_div">
+                    <Log />
+                </div>
                 </div>
         );
     };

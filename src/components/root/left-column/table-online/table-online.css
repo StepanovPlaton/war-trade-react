@@ -6,20 +6,39 @@ table {
     margin-left: 2%;
 }
 
-th, td:first-child {
-    background: rgb(165, 165, 255);
-    padding: 5px 20px;
+.player1 {
+    background: gold;
+    padding: 5px 10px;
 }
+
+.player2 {
+    background: rgb(179, 163, 163);
+    padding: 5px 10px;
+}
+
+.player3 {
+    background: rgb(9, 170, 81);
+    padding: 5px 10px;
+}
+
+th, tr:nth-child(2n+5) td:first-child  {
+    background: rgb(165, 165, 255);
+    padding: 5px 10px;
+}
+
 th, td {
     border-style: solid;
     border-width: 0 2px 2px 0;
     border-color: white;
     border-radius: 5px;
 }
-td {
+td:nth-child(n+2) {
     background: rgb(202, 202, 202);
 }
-th:first-child, td:first-child {
+th:first-child, td:first-child tr:nth-child(2n+1) {
     text-align: left;
 }
+
+
+
 
