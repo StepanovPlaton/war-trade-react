@@ -11,7 +11,6 @@ const getGraph = () => {
 
     request.onload = () => {
         const data = request.responseText;
-        //const data = JSON.parse(request.responseText);
         const x = Math.random();
         document.querySelector('#graph').src = `${data}`;
     }
@@ -24,7 +23,7 @@ const getGraph = () => {
 
 export default class Right extends Component {
 
-    state = { img_src: "http://192.168.32.10:5001/static/graphs/1.png?name=1" };
+    state = { img_src: "/static/graphs/1.png?name=1" };
 
     static SetState(src) {
         this.SetState({img_src: src});
