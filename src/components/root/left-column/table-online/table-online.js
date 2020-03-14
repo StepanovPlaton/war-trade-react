@@ -62,8 +62,8 @@ const UserStatusBar = (input) => {
 export default class TableOnline extends Component {
 
     render() {
-        getTableOnline();
-        window.setInterval(getTableOnline, 5000)
+        //getTableOnline();
+        //window.setInterval(getTableOnline, 5000)
         return (
             <table  id="UserStatusBar_div">
                                

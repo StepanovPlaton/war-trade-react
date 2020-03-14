@@ -9,7 +9,11 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-document.addEventListener("keydown", e => { if(e.keyCode == 13){ document.getElementById("send").click(); } });
+var logined = false;
+
+document.addEventListener("keydown", e => { if(e.keyCode == 13 && !logined){ document.getElementById("send").click(); } });
+document.addEventListener("keydown", e => { if(e.keyCode == 13 && logined){ document.getElementById("send_to_log_button").click(); } });
+//document.getElementById("login_div").addEventListener("keydown", e => { if(e.keyCode == 13){ document.getElementById(id_send_button).click(); } });
 
 export default class LoginForms extends Component {
 
@@ -23,7 +27,8 @@ export default class LoginForms extends Component {
                 ReactDOM.render(<div id="div_ERROR"><p id="ERROR">{data.answer}</p></div>, 
                                 document.querySelector('#tr_ERROR'));
             }
-            else { ReactDOM.render(<Root />, document.getElementById("root"));  }  
+            
+            else { logined = true; ReactDOM.render(<Root />, document.getElementById("root"));  }  
         }
 
         const data = new FormData();

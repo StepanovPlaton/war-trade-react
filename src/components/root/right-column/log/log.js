@@ -20,7 +20,7 @@ const getLog = (type=0) => {
         const data = input.log;
         var render = [];
         for (var i = 0; i < data.length; i++) { 
-            render.push(<LogElement text={data[i][0]} type={data[i][1]} class={data[i][2] + " " + data[i][3]} />); 
+            render.push(<LogElement text={data[i][0]} type={data[i][1]} user={data[i][2]} color={data[i][3]} bold={data[i][4]} />); 
             console.log(data[i][0] + " " + data[i][1]);
         }
         ReactDOM.render(React.createElement('div', null, render), document.querySelector('#Log'));

@@ -24,8 +24,8 @@ const getGameTime = () => {
 
 export default class Left extends Component {
     render() {
-        getGameTime();
-        window.setInterval(getGameTime, 5000);
+        //getGameTime();
+        //window.setInterval(getGameTime, 5000);
         return (
             <div>
                 <p id="datetime">
