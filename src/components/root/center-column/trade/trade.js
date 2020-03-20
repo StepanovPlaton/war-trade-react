@@ -23,6 +23,13 @@ const clearCheckedQuantity = () => {
     document.getElementById("input_quantity").className = "buttons_trade buttons_quantity";
 }
 
+const clearCheckedPrice = () => {
+    document.getElementById("quantity_1").className = "buttons_trade buttons_quantity";
+    document.getElementById("quantity_5").className = "buttons_trade buttons_quantity";
+    document.getElementById("quantity_10").className = "buttons_trade buttons_quantity";
+    document.getElementById("input_quantity").className = "buttons_trade buttons_quantity";
+}
+
 const getResource = () => {
     if(document.getElementById("trade_gold").className.search("checked") != -1) { return "Gold"; }
     else if(document.getElementById("trade_wood").className.search("checked") != -1) { return "Wood"; }
@@ -38,6 +45,7 @@ const getQuantity = () => {
     else if(document.getElementById("quantity_10").className.search("checked") != -1) { return "5"; }
     else { return document.getElementById("input_quantity").textContent; }
 }
+const getPrice = () => { return document.getElementById("input_price").textContent; }
 
 const clickGold = () => { clearCheckedResource(); document.getElementById("trade_gold").className += " checked"; }
 const clickWood = () => { clearCheckedResource(); document.getElementById("trade_wood").className += " checked"; }
@@ -53,12 +61,21 @@ const clickminus = () => { clearCheckedQuantity(); var input = document.getEleme
                         if(parseInt(input.textContent)>1) {ReactDOM.render(<span>{parseInt(input.textContent)-1}</span>, input); } }
 const clickinput = () => { clearCheckedQuantity(); document.getElementById("input_quantity").className += " checked"; }
 
+const clickplusprice5 = () => { var input = document.getElementById("input_price");  ReactDOM.render(<span>{parseInt(input.textContent)+5}</span>, input);  }
+const clickminusprice5 = () => { var input = document.getElementById("input_price");  if(parseInt(input.textContent)>5) {ReactDOM.render(<span>{parseInt(input.textContent)-5}</span>, input); } }
+const clickplusprice1 = () => { var input = document.getElementById("input_price");  ReactDOM.render(<span>{parseInt(input.textContent)+1}</span>, input);  }
+const clickminusprice1 = () => { var input = document.getElementById("input_price");  if(parseInt(input.textContent)>1) {ReactDOM.render(<span>{parseInt(input.textContent)-1}</span>, input); } }
 
-const typeTransaction = (type) => {if(type==0) {return "status";} else {return "trade";}}
+
+const typeTransaction = (type) => {
+    if(type==0) {return "status";} 
+    if(type==2) {return "trade with players"}
+    else {return "trade with market";}
+}
 
 function TradeAndGetStatus(type=0) {
     const request = new XMLHttpRequest();
-    request.open('POST', 'http://192.168.32.10:5001/user_status_or_trade');
+    request.open('POST', '/user_status_or_trade');
 
     request.onload = () => {
         const data = JSON.parse(request.responseText);
@@ -75,13 +92,15 @@ function TradeAndGetStatus(type=0) {
     data.append('typeResource', getResource());
     data.append('typeTransaction', getType());
     data.append('Quantity', getQuantity());
+    data.append('Price', getPrice());
     request.send(data);
     return false;
 }
 
 export default class Trade extends Component {
     
-    Trade() { TradeAndGetStatus(1); }
+    Trade_with_market() { TradeAndGetStatus(1); }
+    Trade_with_player() { TradeAndGetStatus(2); }
 
     render() {
         window.setTimeout(TradeAndGetStatus, 500);
@@ -99,16 +118,16 @@ export default class Trade extends Component {
                     </tr>
                     <tr>
                         <th>Тип сделки:</th>
-                        <td><button className="buttons_trade checked" id="buy" onClick={clickBuy}><i class="fa fa-arrow-down fa-lg"/>Покупка</button></td>
-                        <td><button className="buttons_trade" id="sale" onClick={clickSale}><i class="fa fa-arrow-up fa-lg"/>Продажа</button></td>
+                        <td><button className="buttons_trade checked" id="buy" onClick={clickBuy}><i class="fa fa-arrow-down"/>Покупка</button></td>
+                        <td><button className="buttons_trade" id="sale" onClick={clickSale}><i class="fa fa-arrow-up"/>Продажа</button></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <th>Предмет сделки:</th>
-                        <td><button className="buttons_trade checked" id="trade_gold" onClick={clickGold}><i className="fa fa-cubes fa-lg"/>Золото</button></td>
-                        <td><button className="buttons_trade" id="trade_wood" onClick={clickWood}><i className="fa fa-bars fa-lg"/>Дерево</button></td>
-                        <td><button className="buttons_trade" id="trade_rock" onClick={clickRock}><i className="fa fa-area-chart fa-lg" />Камень</button></td>
+                        <td><button className="buttons_trade checked" id="trade_gold" onClick={clickGold}><i className="fa fa-cubes"/>Золото</button></td>
+                        <td><button className="buttons_trade" id="trade_wood" onClick={clickWood}><i className="fa fa-bars"/>Дерево</button></td>
+                        <td><button className="buttons_trade" id="trade_rock" onClick={clickRock}><i className="fa fa-area-chart" />Камень</button></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -122,7 +141,23 @@ export default class Trade extends Component {
                             <button className="buttons_trade buttons_input_quantity" onClick={clickplus}>+</button>
                         </span> </td>
                     </tr>
-                    <tr><th colspan="5" id="trade_th"><button className="buttons_issue checked" onClick={this.Trade}>Оформить сделку</button></th></tr>
+                    <tr>
+                        <th>C рыком:</th>
+                        <td colspan="2">По рыночной цене!</td>
+                        <th colspan="2" id="trade_th"><button className="buttons_issue checked" onClick={this.Trade_with_market}>Торговать</button></th>
+                    </tr>   
+                    <tr>
+                        <th>C играками:</th>
+                        <td colspan="2">
+                            Цена: 
+                            <button className="buttons_trade buttons_input_price" onClick={clickminusprice5}>-5</button>
+                            <button className="buttons_trade buttons_input_price" onClick={clickminusprice1}>-1</button>
+                            <button className="buttons_trade buttons_input_price checked" id="input_price"><span>100</span></button>
+                            <button className="buttons_trade buttons_input_price" onClick={clickplusprice1}>+1</button>
+                            <button className="buttons_trade buttons_input_price" onClick={clickplusprice5}>+5</button>
+                        </td>
+                        <th colspan="2" id="trade_th"><button className="buttons_issue checked" onClick={this.Trade_with_player}>Выложить заявку</button></th>                    
+                    </tr>
                 </table>
             </div>
         );

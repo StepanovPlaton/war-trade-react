@@ -19,7 +19,7 @@ export default class LoginForms extends Component {
 
     clickOnSendButton() {
         const request = new XMLHttpRequest();
-        request.open('POST', 'http://192.168.32.10:5001/login');
+        request.open('POST', '/login');
 
         request.onload = () => {
             const data = JSON.parse(request.responseText);

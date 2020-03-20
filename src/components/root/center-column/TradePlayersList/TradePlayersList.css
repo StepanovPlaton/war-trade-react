@@ -1,0 +1,50 @@
+#TradePlayersList_div {
+    height: 24rem;
+    margin-top: 2%;
+    overflow: scroll;
+    padding: 3px 8px;
+}
+
+td {
+    text-align: center;
+}
+
+.approv_tradelistbuttons {
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    padding: 0px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px rgb(96, 179, 0) inset, 0 0 0 0 rgb(96, 179, 0);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+    transition: .15s ease-in-out;
+}
+.approv_tradelistbuttons:hover{
+  box-shadow: 0 0 10px 0 rgb(255, 82, 29) inset, 0 0 5px 2px rgb(255, 82, 29);
+  color: rgb(255, 82, 29);
+  
+}
+
+.close {
+    margin: -18% 50%;
+    opacity: 0.5;
+}
+.close:hover {
+    opacity: 1;
+}
+.close:before, .close:after {
+    position: absolute;
+    content: ' ';
+    height: 30px;
+    width: 3px;
+    background-color: rgb(0, 0, 0);
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}

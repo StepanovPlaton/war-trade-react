@@ -12,3 +12,6 @@
 #footer {
     clear: both;
 }
+body {
+    height: 100%;
+}

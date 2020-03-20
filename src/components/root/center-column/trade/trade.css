@@ -1,9 +1,10 @@
 #trade {
-    margin-top: 60%;
+  clear: both;
 }
 #trade_th {
     text-align: center;
 }
+
 .buttons_trade, .buttons_issue {
     text-decoration: none;
     outline: none;
@@ -36,4 +37,10 @@
 }
 .buttons_input_quantity {
   width: 30%;
+}
+.buttons_input_price {
+  width: 15%;
+}
+#input_price {
+  width: 20%;
 }

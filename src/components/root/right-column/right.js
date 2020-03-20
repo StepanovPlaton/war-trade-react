@@ -7,7 +7,7 @@ import Log from './log/log';
 
 const getGraph = () => {
     const request = new XMLHttpRequest();
-    request.open('GET', 'http://192.168.32.10:5001/get_graph');
+    request.open('GET', '/get_graph');
 
     request.onload = () => {
         const data = request.responseText;

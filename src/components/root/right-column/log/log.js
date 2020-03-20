@@ -13,7 +13,7 @@ const getLog = (type=0) => {
     Log.scrollTop = Log.scrollHeight;
 
     const request = new XMLHttpRequest();
-    request.open('POST', 'http://192.168.32.10:5001/log');
+    request.open('POST', '/log');
 
     request.onload = () => {
         const input = JSON.parse(request.responseText);
@@ -21,7 +21,6 @@ const getLog = (type=0) => {
         var render = [];
         for (var i = 0; i < data.length; i++) { 
             render.push(<LogElement text={data[i][0]} type={data[i][1]} user={data[i][2]} color={data[i][3]} bold={data[i][4]} />); 
-            console.log(data[i][0] + " " + data[i][1]);
         }
         ReactDOM.render(React.createElement('div', null, render), document.querySelector('#Log'));
     }

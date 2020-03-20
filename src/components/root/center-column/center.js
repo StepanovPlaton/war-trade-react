@@ -7,13 +7,17 @@ import Cookies from 'universal-cookie';
 
 import Head from './head/head';
 import Trade from './trade/trade'
+import TradePlayersList from './TradePlayersList/TradePlayersList';
 
 export default class Center extends Component {
     render() {
         return (
-            <div>
+            <div id="trading">
                 <div id="head"> <Head /> </div>
-                <div> <Trade /></div>
+                <div id="trading"> 
+                    <TradePlayersList />
+                    <Trade />
+                </div>
             </div>
         );
     };
