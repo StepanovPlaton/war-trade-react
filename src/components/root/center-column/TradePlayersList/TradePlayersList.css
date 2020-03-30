@@ -1,7 +1,7 @@
 #TradePlayersList_div {
     height: 24rem;
     margin-top: 2%;
-    overflow: scroll;
+    overflow: auto;
     padding: 3px 8px;
 }
 

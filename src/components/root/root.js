@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import './root.css'
-import { render } from '@testing-library/react';
-import Cookies from 'universal-cookie';
 
 import Right from './right-column/right';
 import Left from './left-column/left';

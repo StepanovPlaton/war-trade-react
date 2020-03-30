@@ -4,7 +4,7 @@
 
 #Log {
     height: 20rem;
-    overflow: scroll;
+    overflow: auto;
     padding: 3px 8px;
     border: 3px solid rgb(85, 85, 255);
     border-radius: 10px;

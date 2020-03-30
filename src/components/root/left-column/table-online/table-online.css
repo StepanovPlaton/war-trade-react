@@ -6,7 +6,7 @@ table {
     margin-left: 2%;
 }
 
-.player1 {
+.player3 {
     background: gold;
     padding: 5px 10px;
 }
@@ -16,12 +16,12 @@ table {
     padding: 5px 10px;
 }
 
-.player3 {
+.player1 {
     background: rgb(9, 170, 81);
     padding: 5px 10px;
 }
 
-th, tr:nth-child(2n+5) td:first-child  {
+th, tr:nth-child(n+5) td:first-child  {
     background: rgb(165, 165, 255);
     padding: 5px 10px;
 }

@@ -1,4 +1,7 @@
-.graph {
-    margin: -95% auto 0 -15%;
+#graph {
+    margin-left: -5%;
+    margin-top: -5%;
 }
-
+#Log_div {
+    margin-top: 5%;
+}
