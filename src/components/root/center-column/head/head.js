@@ -8,9 +8,9 @@ const sio = openSocket(window.__PATH_TO_SIO__);
 sio.on('market_and_table_online_and_gametime', data => { if(window.__LOGINED__) { SetMarketTableOnlineAndGameTime(data); } });
 
 const SetMarketTableOnlineAndGameTime = (data) => {
-    ReactDOM.render(<span> Золото - {data.money} </span>, document.querySelector('#money_js'));
-    ReactDOM.render(<span> Дерево - {data.wood} </span>, document.querySelector('#wood_js'));
-    ReactDOM.render(<span> Камень - {data.rock} </span>, document.querySelector('#rock_js'));
+    ReactDOM.render(<span> Курс золота - {data.money} </span>, document.querySelector('#money_js'));
+    ReactDOM.render(<span> Курс дерева - {data.wood} </span>, document.querySelector('#wood_js'));
+    ReactDOM.render(<span> Курс камня - {data.rock} </span>, document.querySelector('#rock_js'));
     ReactDOM.render((<span> {data.gametime} </span>), document.querySelector('#datetime_js'));
     
     var render = [];
@@ -40,7 +40,7 @@ const SetMarketTableOnlineAndGameTime = (data) => {
 const UserStatusBar = (input) => {
     return (
         <tr className={input.add} key={toString(input.key_set)+"user_status_bar"}>
-            <td className="status-table-title">{ input.name }</td>
+            <th className="status-table-title">{ input.name }</th>
             <td className="status-table-td">{
             input.money + input.gold*parseInt(document.getElementById('money_js').textContent.split("").reverse().join("")) + 
             input.wood*parseInt(document.getElementById('wood_js').textContent.split("").reverse().join("")) + 
@@ -54,9 +54,9 @@ export default class Head extends Component {
     render() {
         return (
             <div id="resource">
-                <span id="price_money"><i className="fa fa-cubes fa-lg"></i><span id="money_js"></span></span>
-                <span id="price_wood"><i className="fa fa-bars fa-lg"></i><span id="wood_js"></span></span>
-                <span id="price_rock"><i className="fa fa-area-chart fa-lg"></i><span id="rock_js"></span></span>
+                <span id="price_money"><i className="fa fa-line-chart fa-lg"></i> <i className="fa fa-cubes fa-lg"></i><span id="money_js"> Курс золота - ?</span></span>
+                <span id="price_wood"><i className="fa fa-line-chart fa-lg"></i> <i className="fa fa-bars fa-lg"></i><span id="wood_js"> Курс дерева - ?</span></span>
+                <span id="price_rock"><i className="fa fa-line-chart fa-lg"></i> <i className="fa fa-area-chart fa-lg"></i><span id="rock_js"> Курс камня - ?</span></span>
             </div>
         );
     };

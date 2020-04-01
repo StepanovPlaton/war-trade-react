@@ -5,12 +5,17 @@
     text-align: center;
 }
 
+table {
+  margin-left: 2px;
+  margin-top: -1%;
+}
+
 .buttons_trade, .buttons_issue {
     text-decoration: none;
     outline: none;
     display: inline-block;
-    padding: 0px 5px;
-    border-radius: 10px;
+    padding: 0px 10px;
+    border-radius: 8px;
     box-shadow: 0 0 40px 40px rgb(255, 82, 29) inset, 0 0 0 0 rgb(255, 82, 29);
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -28,11 +33,10 @@
     box-shadow: 0 0 40px 40px rgb(96, 179, 0) inset, 0 0 0 0 rgb(96, 179, 0);
 }
 .buttons_quantity {
-  width: 60%;
+  width: 33%;
 }
 
-#input_quantity {
-  
+.input_quantity {
   width: 40%;
 }
 .buttons_input_quantity {
@@ -48,4 +52,68 @@
 
 #input_price {
   width: 18%;
+}
+
+.tabs {
+  position: relative;
+  margin-top: 2%;
+ }
+ .tab, .tab-title {
+  display: inline-block; /* Выстраиваем по горизонтали */
+  margin-left: 2px;
+ }
+ .tab input[type="radio"] { display: none; }
+ .tab-title {
+  background: rgb(255, 135, 98); /* Цвет фона */
+  padding: 5px 10px; /* Поля вокруг текста */
+  border: 1px solid rgb(78, 78, 78); /* Параметры рамки */
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  font-weight:750;
+ }
+ .tab-content {
+  position: absolute; /* Абсолютное позиционирование */
+  left: 0; /* Размещаем у левого края */
+  width: calc(100%); /* Ширина содержимого */
+  display: none; /* Прячем вкладку */
+ }
+ .tab :checked + .tab-title {
+  position: relative; /* Относительное позиционирование */
+  background: rgb(136, 255, 0); /* Цвет фона */
+  top: -2px; /* Сдвигаем вниз */
+  z-index: 1; /* Сдвигаем вниз */
+ }
+ .tab :checked ~ .tab-content {
+  display: block; /* Показываем активную вкладку */
+ }
+
+ .my_money_div {
+    border: 3px solid yellow;
+    border-radius: 10px;
+    width: 10%;
+    padding: 5px;
+}
+.my_gold_div {
+    margin-left: 2%;
+    border: 3px solid orange;
+    border-radius: 10px;
+    width: 10%;
+    padding: 5px;
+}
+.my_wood_div {
+    margin-left: 2%;
+    border: 3px solid green;
+    border-radius: 10px;
+    width: 10%;
+    padding: 5px;
+}
+.my_rock_div {
+  margin-left: 2%;
+  border: 3px solid blue;
+  border-radius: 10px;
+  width: 10%;
+  padding: 5px;
+}
+#my_resource {
+  margin: 2% auto 0 auto;
 }

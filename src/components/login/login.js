@@ -49,7 +49,10 @@ export default class LoginForms extends Component {
                 <h4 className="center"><p>Форма регистрации</p></h4>
                 <p><input type="text" id="login" size="30" maxLength="15" placeholder="Логин" className="center"></input></p>
                 <p><input type="password" id="password" size="30" maxLength="15" placeholder="Пароль" className="center"></input></p>
-                <button id="send" onClick={ this.clickOnSendButton.bind(this) } className="center">Отправить</button>
+                <p>
+                    <button className="send center"  id="send" onClick={ this.clickOnSendButton.bind(this) } >Войти</button>
+                    <button className="send center" onClick={ this.clickOnSendButton.bind(this) } >Зарегистрироваться</button>
+                </p>
                 <div id="tr_ERROR"></div>
             </div>
         );

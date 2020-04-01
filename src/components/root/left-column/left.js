@@ -7,12 +7,16 @@ export default class Left extends Component {
     render() {
         return (
             <div>
-                <div id="datetime">
+                <div id="datetime_div">
                     <h5>
-                        <i className="fa fa-calendar-check-o fa-lg"/>
-                        <span id="datetime_js"></span>
+                        <span id="datetime">
+                            <i className="fa fa-calendar-check-o fa-lg"/>
+                            <span id="datetime_js"> Загрузка...</span>
+                        </span>
                     </h5>
+                    
                 </div>
+                
                 <TableOnline />
             </div>
         );

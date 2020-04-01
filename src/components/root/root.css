@@ -5,7 +5,7 @@
 #center {
     float: left;
     margin-left: 5px;
-    width: 55%;
+    width: 50%;
 }
 #right {
     float: left;
@@ -13,5 +13,5 @@
     width: 25%;
 }
 #root {
-    overflow: hidden;
+    overflow: visible;
 }

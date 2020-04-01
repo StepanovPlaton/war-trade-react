@@ -20,7 +20,7 @@ const GetTradeList = (data) => {
             <th>Тип сделки</th>
             <th>Ресурс</th>
             <th>Количество</th>
-            <th>Сумма</th> 
+            <th>Цена</th> 
             <th></th> 
         </tr> 
     ));
@@ -79,9 +79,9 @@ const TradeLine = (data) => {
 
 const TradeLineButton = (data) => {
     if(data.type === "approve") {
-        return ( <button className="approv_tradelistbuttons" onClick={ () => { getList(data.x, "approv"); } }>Принять</button> );
+        return ( <button className="approv_tradelistbuttons" onClick={ () => { getList(data.x, "approv"); } }><i className="fa fa-check fa-lg"></i></button> );
     }else {
-        return ( <button className="buttons_trade checked" onClick={ () => { getList(data.x, "close"); } }>Отменить</button> );
+        return ( <button className="buttons_trade checked" onClick={ () => { getList(data.x, "close"); } }><i className="fa fa-times fa-lg"></i></button> );
     }
 }
 

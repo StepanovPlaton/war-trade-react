@@ -1,27 +1,14 @@
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 18px;
     border-collapse: collapse;
     text-align: center;
-    margin-left: 2%;
+    margin-top: 40px;
+    margin-left: 15px;
 }
-
-.player3 {
-    background: gold;
-    padding: 5px 10px;
+#UserStatusBar_div {
+    margin-top: 5%;
 }
-
-.player2 {
-    background: rgb(179, 163, 163);
-    padding: 5px 10px;
-}
-
-.player1 {
-    background: rgb(9, 170, 81);
-    padding: 5px 10px;
-}
-
-th, tr:nth-child(n+5) td:first-child  {
+th, tr td:first-child  {
     background: rgb(165, 165, 255);
     padding: 5px 10px;
 }
@@ -31,6 +18,7 @@ th, td {
     border-width: 0 2px 2px 0;
     border-color: white;
     border-radius: 5px;
+    padding: 2px 5px;
 }
 td:nth-child(n+2) {
     background: rgb(202, 202, 202);

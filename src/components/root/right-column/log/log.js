@@ -47,7 +47,7 @@ export default class Log extends Component {
 
                 </div>
                 <p id="send_to_log_form">
-                    <input size="30" id="send_to_log_text_input"></input>
+                    <input size="25" id="send_to_log_text_input"></input>
                     <button onClick={SendToLog} id="send_to_log_button">Отправить</button>
                 </p>
             </div>
